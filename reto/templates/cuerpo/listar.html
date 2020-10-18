@@ -1,0 +1,39 @@
+{% extends "base/index.html" %}
+{% block main %}
+    <section class="row">
+        <h1 class="center-align">
+            Listar productos
+        </h1>
+    </section>
+    <section class="container">
+        {% if productos %}
+        <section class="row">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody >
+                    {% for producto in productos %}
+                    <tr id = "{{ producto.id }}" >
+                        <td><a href='/agregarC/'><img src="{{producto.foto}}" class="imagenbd"> </a></td>
+                        <td>{{ producto.nombre }}</td>
+                        <td>{{ producto.precio }}</td>
+                        <td>{{ producto.stock }}</td>
+                        <td>
+                            <a href="/modificar/{{producto.id}}" class="btn-floating btn-small waves-effect waves-light green"><i class="material-icons">mode_edit</i></a>
+                            <a href="/eliminar/{{producto.id}}" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No hay productos en la base de datos</p>
+        {% endif %}
+
+{% endblock main %}

@@ -1,34 +1,4 @@
 {% extends 'base/index.html' %}
 {% block main %}
-<a class="waves-effect waves-light btn" href="listar/">listar</a>
-<a class="waves-effect waves-light btn" href="agregar/" >agregar</a>
-<a class="waves-effect waves-light btn" >usuario</a>
-<section class="container">
-    {% if productos %}
-    <section class="row">
-        <table>
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nombre</th>
-                    <th>Precio</th>
-                    <th>Stock</th>
-                </tr>
-            </thead>
-            <tbody >
-                {% for producto in productos %}
-                <tr id = "{{ producto.id }}" >
-                    <td><a href=''><img src="{{producto.foto}}" class="imagenbd"> </a></td>
-                    <td>{{ producto.nombre }}</td>
-                    <td>{{ producto.precio }}</td>
-                    <td>{{ producto.stock }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
-    {% else %}
-        <p>No hay productos en la base de datos</p>
-    {% endif %}
-</section>
-{% endblock %} 
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base/index.html' %}
+{% block main %}
+<a class="waves-effect waves-light btn" href="listar/">listar</a>
+{% if user.name == admin %}
+    <a class="waves-effect waves-light btn" href="/accounts/perfil">Usuario: {{ user.username }}</a>
+    <a class="waves-effect waves-light btn" href="/accounts/salir/">Cerrar Sesión</a>
+    <a class="waves-effect waves-light btn" href="agregar/" >agregar</a>
+    <a class="waves-effect waves-light btn" href="#!" >Crear Lista</a>
+{% else %}
+    <a class="waves-effect waves-light btn" href="accounts/">iniciar Sesión </a>
+{% endif %}
+<section class="container">
+    {% if productos %}
+    <section class="flex-carrito">
+        {% for producto in productos %}
+            <article class="col-md-3 col-sm-12 col-lg4" style="width: 110px; border: solid 1px; margin: 15px;"> 
+                <main class="carrito">
+                    <img src="{{producto.foto}}" alt="{{producto.nombre}}" class="carrito-img-top">
+                    <body class="carrito-body">
+                        <h5 class="titulo-carrito">{{producto.nombre}}</h5>
+                        <p class="stock"> Stock:{{producto.stock}}</p>
+                        <p class="precio">${{producto.precio}}</p>
+                        <a href="/carrito/addProducto/{{producto.id}}" class="btn btn-small waves-effect waves-light green"><i class="material-icons">add_shopping_cart</i></a>
+                    </body>
+                </main>
+            </article>
+        {% endfor %}
+    </section>
+    {% else %}
+        <p>No hay productos en la base de datos</p>
+    {% endif %}
+</section>
+{% endblock %} 

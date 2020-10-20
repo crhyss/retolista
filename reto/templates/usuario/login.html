@@ -1,0 +1,10 @@
+{% extends 'base/index.html' %}
+{% block main %}
+    <section class="container" style = "display:flex; justify-content: center;">
+        <form action="" method="POST">
+            {{formulario}}
+            {% csrf_token %}
+            <input type="submit" value="Iniciar Sesion">
+        </form>
+    </section>
+{% endblock %}

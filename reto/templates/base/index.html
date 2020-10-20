@@ -10,10 +10,32 @@
     {% endblock %}
 </head>
 <body>
-    <header class="header">
-
+    <header>
+        {% block header %}
+        <nav>
+            <div class="nav-wrapper" style="padding: 10px; ">
+              <a  class="brand-logo" href="/">Tiendita del Lucho Negro</a>
+              {% if user.is_authenticated %}
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/accounts/perfil/">Bienvenido: {{ user.username }}</a></li>
+                <li><a href="/listacarrito/">Crear una lista</a></li>
+                <li><a href="/accounts/salir/">Cerrar sesión</a></li>
+                {% if user.username == "admin" %}
+                <li><a  href="/agregar/" >Agregar</a></li>
+                <li><a  href="/listar/" >Listar</a></li>
+                {% endif %}
+                {% else %}
+                <div id ="lista" style="display: flex; justify-content: flex-end;">
+                <li><a href="/accounts/login/">Acceder</a></li>
+                <li><a href="/accounts/registro/">Registro</a></li>
+                </div>
+              </ul>
+              {% endif %}
+            </div>
+          </nav>
+        {% endblock header %}
     </header>
-    <main id="bd">
+    <main id="bd"">
         {% block main %}
 
         {% endblock main %}

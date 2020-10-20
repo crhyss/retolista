@@ -1,8 +1,10 @@
 from django.shortcuts import render,redirect
-from .models import Producto, carrito 
+from .models import Producto
 from .forms import ProductoForm, carritoForm
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
-
+@permission_required('producto.view_producto')
+@login_required
 def listarProducto(request):
     productos = Producto.objects.all()
     context = {
@@ -68,3 +70,11 @@ def eliminarProducto(request,id_producto):
     productoEliminado.delete()
     return (redirect('/listar/'))
 
+@login_required()
+def listado_productos(request):
+    productos = Producto.objects.all()
+    return render(
+        request,
+        "cuerpo/listado.html", {
+        "productos": productos
+    })
